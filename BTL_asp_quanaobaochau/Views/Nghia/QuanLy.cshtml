@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "QuanLy";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var listdonhang = ViewBag.listdonhang;
+}
+
+<style type="text/css">
+    td {
+        font-size: 12px;
+    }
+</style>
+<h2 align="center">Qu?n lý don hàng</h2>
+<div id="search">
+    <form id="form-date" action="/Nghia/searchinQuanLy" method="post">
+        <label for="daytime">Tìm ki?m theo ngày d?t hàng:</label>
+        <input type="date" id="dateDefault" name="date" />
+        <input type="submit" value="Ch?n" />
+    </form>
+</div>
+<table>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+<table width="100%" border="0" cellpadding="1" cellspacing="1" class="table table-bordered">
+    <form action="/index.php?lg=vn&Bcat=70&start=0&id=30009" method="post" name="frmList">
+        <tr valign="center" bgcolor="#FFFFFF">
+            <td width="63" height="18" align="center" valign="middle" class="text_tb">Mã don hàng</td>
+            <td width="129" class="text_tb"><span class="tab_left_3">H? tên </span></td>
+            <td width="300" align="left" valign="middle" class="text_tb">Ð?a ch?</td>
+            <td width="81" align="left" valign="middle" class="text_tb">Email</td>
+            <td width="66" align="left" valign="middle" class="text_tb"><span class="tab_left_3">Ngày d?t</span></td>
+            <td width="146" align="left" valign="middle" class="text_tb"><span class="tab_left_3">T?ng ti?n</span></td>
+        </tr>
+        @foreach (var dh in listdonhang)
+        {
+            <tr bgcolor="#FFFFFF">
+                <td height="22" align="center" class="text_def">
+                    @dh.MaDonHang
+                </td>
+                <td align="left" valign="middle" class="text_def">
+                    @dh.HoTen
+                </td>
+                <td align="left" valign="middle" class="text_def">@dh.DiaChi</td>
+                <td align="left" valign="middle" class="text_def">@dh.Email</td>
+                <td align="left" valign="middle" class="text_def">@dh.NgayDat</td>
+                <td align="left" valign="middle" class="text_def">@dh.TongTien</td>
+            </tr>
+        }
+        </tr>
+        <input name="sum_price" value="0" type="hidden">
+    </form>
+</table>
+

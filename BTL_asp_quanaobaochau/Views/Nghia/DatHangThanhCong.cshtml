@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "DatHangThanhCong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listsp = ViewBag.listsp;
+    int tongtien = ViewBag.tongtien;
+    int stt = 0;
+}
+<style type="text/css">
+    td {
+        font-size: 12px;
+    }
+</style>
+<h2>Thông tin đơn hàng</h2>
+<br />
+<table class="CenterColumn" border="0" cellpadding="5" cellspacing="0" width="97%">
+    <tbody>
+        <tr>
+            <td>
+                <table class="ProductListing" border="0" cellpadding="2" cellspacing="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td width="150" align="right" class="text_def" style="font-size:12px">Họ tên:</td>
+                            <td>
+                                <span id="hoten" style="margin-left:30px">   @ViewBag.hoten</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="150" align="right" class="text_def">Địa chỉ:</td>
+                            <td>
+                                <span style="margin-left:30px" id="diachi">  @ViewBag.diachi</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td align="right" class="text_def">Email:</td>
+                            <td>
+                                <span id="email" style="margin-left:30px">   @ViewBag.email</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="160" align="right" class="text_def">Điện thoại di động:</td>
+                            <td class="small">
+                                <span id="dienthoaidd" style="margin-left:30px">   @ViewBag.sdt</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="150" align="right" class="text_def">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table width="100%" border="0" cellpadding="1" cellspacing="1" class="table table-bordered">
+    <form action="/index.php?lg=vn&Bcat=70&start=0&id=30009" method="post" name="frmList">
+        <tr valign="center" bgcolor="#FFFFFF">
+            <td width="63" height="18" align="center" valign="middle" class="text_tb">Stt</td>
+            <td width="129" class="text_tb"><span class="tab_left_3">Mã số </span></td>
+            <td width="383" align="left" valign="middle" class="text_tb">Tên</td>
+            <td width="81" align="left" valign="middle" class="text_tb">Giá</td>
+            <td width="66" align="left" valign="middle" class="text_tb"><span class="tab_left_3">Số lượng </span></td>
+            <td width="146" align="left" valign="middle" class="text_tb"><span class="tab_left_3">Tổng cộng</span></td>
+        </tr>
+        @if (Session["giohang"] != null)
+        {
+            foreach (var sp in listsp)
+            {
+
+                <tr bgcolor="#FFFFFF">
+                    <td height="22" align="center" class="text_def">
+                        @(++stt)
+                    </td>
+                    <td class="text_def">@sp.Id</td>
+                    <td align="left" valign="middle" class="text_def">
+                        <a href="http://quanaobaochau.com/dat-hang/ao-so-mi-ngan-tay-linen-polo-apple-kids-ri-5_size-1-5t-vn-p-30009-0.html">@sp.ten</a>
+                        <input type=hidden value="0" name="size_30009">
+                        <input type=hidden value="0" name="color_30009">
+                        <input type=hidden value="0" name="made_30009">
+                    </td>
+                    <td align="left" valign="middle" class="text_def">@sp.gia</td>
+                    <td align="left" valign="middle" class="text_def">@sp.soluong</td>
+                    <td align="left" valign="middle" class="text_def">@(sp.gia*sp.soluong)</td>
+                </tr>
+            }
+
+        }
+    </form>
+</table>
+<h4 align="right">Tổng tiền : @tongtien VNĐ</h4>
+

@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "NhapThongTinDatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    td {
+        font-size: 12px;
+    }
+</style>
+<h2>Mua Hàng</h2>
+<table class="border-page">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="/shopping_cart/style.css" rel="stylesheet" type="text/css" />
+    <form name="AddressForm" method="post" action="/Nghia/DatHangThanhCong" onsubmit="return onSubmit()">
+        <input name="sum_price" value="0" type="hidden">
+        <table class="table table-sm" border="0" cellpadding="2" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td class="tieu_de"><strong>Địa chỉ nhận hàng</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="CenterColumn" border="0" cellpadding="5" cellspacing="0" width="97%">
+            <tbody>
+                <tr>
+                    <td>
+                        <table class="ProductListing" border="0" cellpadding="2" cellspacing="0" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td width="150" align="right" class="text_def" style="font-size:12px">Họ tên:</td>
+                                    <td>
+                                        <input id="hoten" name="hoten" type="text" style="font-size:12px" class="textfield" size="30" maxlength="50">
+                                        <span id="tbhoten">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="150" align="right" class="text_def">Địa chỉ:</td>
+                                    <td>
+                                        <input id="diachi" name="diachi" type="text" class="textfield" size="50" maxlength="255">
+                                        <span id="tbdiachi">*</span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td align="right" class="text_def">Email:</td>
+                                    <td>
+                                        <input id="email" type="text" class="textfield" name="email" size="50" maxlength="255" />
+                                        <span id="tbemail">*</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="150" align="right" class="text_def">Điện thoại:</td>
+                                    <td class="small">
+                                        <input id="dienthoai" name="dienthoai" type="text" class="textfield" size="20" maxlength="20">
+                                        <span id="tbdienthoai">  (Ví dụ. 08+62786199)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="160" align="right" class="text_def">Điện thoại di động:</td>
+                                    <td class="small">
+                                        <input id="dienthoaidd" name="dienthoaidd" type="text" class="textfield" size="20" maxlength="20">
+                                        <span id="tbdienthoaidd">  (Ví dụ. 0933809800)</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="ProductListing" border="0" cellpadding="2" width="96%">
+            <tbody>
+                <tr>
+                    <td align="right" width="150">&nbsp;</td>
+                    <td>
+                        <input type="submit" class="nut_nhan_2" value="Tiếp tục" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="border-collapse: collapse;" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+                <tr>
+                    <td height="5"></td>
+                </tr>
+            </tbody>
+        </table>
+        <input name="payment_id" value="1" type="hidden" />
+    </form>
+    </td>
+    </tr>
+</table>
+<script>
+    function onSameAddressCheck() {
+        var x = document.getElementById("SameAddress");
+        var tieude = document.getElementById("tieude");
+        var table = document.getElementById("BillingAddress");
+        if (x.checked == true)
+        {
+            tieude.style.display = "none";
+            table.style.display = "none";
+        }
+        else{
+            tieude.style.display = "block";
+            table.style.display = "block";
+        }
+    }
+    function onTest() {
+        alert("test");
+        return false;
+    }
+
+    function onSubmit() {
+        var checksubmit = true;
+
+        var hoten = document.getElementById('hoten').value;
+        var diachi = document.getElementById('diachi').value;
+        var email = document.getElementById('email').value;
+        var dienthoai = document.getElementById('dienthoai').value;
+        var dienthoaidd = document.getElementById('dienthoaidd').value;
+
+        var tbhoten = document.getElementById('tbhoten');
+        if (hoten.length != 0) {
+            if (/[^A-Za-z]/.test(hoten)) {
+
+                tbhoten.style.color = "red";
+                tbhoten.innerHTML = "Họ tên chỉ gồm chữ cái";
+                checksubmit = false;
+            }
+            else {
+                tbhoten.style.color = "black";
+                tbhoten.innerHTML = "*";
+            }
+        } else {
+            tbhoten.style.color = "red";
+            tbhoten.innerHTML = "Không để trống";
+            checksubmit = false;
+        }
+
+        var tbdiachi = document.getElementById('tbdiachi');
+        if (diachi.length != 0) {
+            
+        }else {
+            tbdiachi.style.color = "red";
+            tbdiachi.innerHTML = "Không để trống";
+            checksubmit = false;
+        }
+        var tbemail = document.getElementById('tbemail');
+        if (diachi.length != 0) {
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) {
+                tbemail.style.color = "red";
+                tbemail.innerHTML = "Email không hợp lệ";
+                checksubmit = false;
+            }
+            else {
+                tbemail.style.color = "black";
+                tbemail.innerHTML = "*";
+            }
+        } else {
+            tbemail.style.color = "red";
+            tbemail.innerHTML = "Không để trống";
+            checksubmit = false;
+        }
+
+        var tbdienthoai = document.getElementById('tbdienthoai');
+        if (dienthoai.length != 0) {
+            if (/[^0-9]/.test(dienthoai) || dienthoai.length < 10) {
+                tbdienthoai.style.color = "red";
+                tbdienthoai.innerHTML = "Hãy nhập số";
+                checksubmit = false;
+            }
+            else {
+                tbdienthoai.style.color = "black";
+                tbdienthoai.innerHTML = "*";
+            }
+        } else {
+            tbdienthoai.style.color = "red";
+            tbdienthoai.innerHTML = "Không đê trống";
+            checksubmit = false;
+        }
+
+        var tbdienthoaidd = document.getElementById('tbdienthoaidd');
+        if (dienthoaidd.length!=0) {
+            if (/[^0-9]/.test(dienthoaidd) || dienthoai.length < 10) {
+                tbdienthoaidd.style.color = "red";
+                tbdienthoaidd.innerHTML = "Hãy nhập số";
+                checksubmit = false;
+            }
+            else {
+                tbdienthoaidd.style.color = "black";
+                tbdienthoaidd.innerHTML = "*";
+            }
+        } else {
+            tbdienthoaidd.style.color = "red";
+            tbdienthoaidd.innerHTML = "Không để trống";
+            checksubmit = false;
+        }
+        return checksubmit;
+    }
+</script>

@@ -139,6 +139,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBaseContext.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\GioHang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -215,11 +216,17 @@
     <Content Include="Views\Nam\ThongKe.cshtml" />
     <Content Include="Views\Quyen\Tim_kiems.cshtml" />
     <Content Include="Views\Quyen\Tim_kiem.cshtml" />
+    <Content Include="Views\Nghia\NhapThongTinDatHang.cshtml" />
+    <Content Include="Views\Nghia\QuanLyDonHang.cshtml" />
+    <Content Include="Views\Nghia\DatHangThanhCong.cshtml" />
+    <Content Include="Views\Nghia\Giohang.cshtml" />
+    <Content Include="Views\Nghia\muahang.cshtml" />
+    <Content Include="Views\Nghia\QuanLy.cshtml" />
+    <Content Include="Views\Nghia\searchinQuanLy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\Nghia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

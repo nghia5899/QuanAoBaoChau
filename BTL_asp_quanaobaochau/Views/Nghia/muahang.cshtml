@@ -1,0 +1,143 @@
+﻿@model BTL_asp_quanaobaochau.Models.GioHang
+@{
+    ViewBag.Title = "muahang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listsp = ViewBag.listsp;
+    int stt = 0;
+    var length = ViewBag.length;
+    var kiemtra = ViewBag.kiemtra;
+    int tongtien = ViewBag.tongtien;
+}
+
+<style type="text/css">
+    td {
+        font-size: 12px;
+    }
+</style>
+<script>
+import { Alert } from "bootstrap";
+
+    function stt() {
+        stt++;
+    }
+
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+function name0() {
+onCheckAll()
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+function name1() {
+docheckone();
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+function name2() {
+AcceptNumbersOnly();
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+function name3() {
+location.href='/Home'
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+function name4() {
+javascript: update('71','vn','0');
+}
+/* END EXTERNAL SOURCE */
+/* BEGIN EXTERNAL SOURCE */
+function name5() {
+location.href='/Nghia/NhapThongTinDatHang'
+}
+</script>
+<h2>Xem giỏ hàng</h2>
+<table width="100%" border="0" cellpadding="1" cellspacing="1" class="table table-bordered">
+    <form action="/index.php?lg=vn&Bcat=70&start=0&id=30009" method="post" name="frmList">
+        <thead>
+            <tr>
+                <th height="23" colspan="8câ" align="left" valign="middle" id="senderheader" class="bg-secondary text-white"> Xem giỏ hàng</th>
+            </tr>
+        </thead>
+        <tr valign="center" bgcolor="#FFFFFF">
+            <td width="63" height="18" align="center" valign="middle" class="text_tb">Stt</td>
+            <td width="83" valign="middle" class="text_tb">
+                <input name="chkall" type="checkbox" onClick="onCheckAll()" value="0" id="checkall">
+                All
+            </td>
+            <td width="129" class="text_tb"><span class="tab_left_3">Mã số </span></td>
+            <td width="383" align="left" valign="middle" class="text_tb">Tên</td>
+            <td width="81" align="left" valign="middle" class="text_tb">Giá</td>
+            <td width="66" align="left" valign="middle" class="text_tb"><span class="tab_left_3">Số lượng </span></td>
+            <td width="146" align="left" valign="middle" class="text_tb"><span class="tab_left_3">Tổng cộng</span></td>
+            <td></td>
+        </tr>
+        @if (Session["giohang"] != null)
+        {
+            foreach (var sp in listsp)
+            {
+
+                <tr bgcolor="#FFFFFF">
+                    <td height="22" align="center" class="text_def">
+                        @(++stt)
+                    </td>
+                    <td valign="middle" class="text_def"><input type=checkbox name="chkid" class="checkbox" value="30009" onClick=""></td>
+                    <td class="text_def">@sp.Id</td>
+                    <td align="left" valign="middle" class="text_def">
+                        <a href="http://quanaobaochau.com/dat-hang/ao-so-mi-ngan-tay-linen-polo-apple-kids-ri-5_size-1-5t-vn-p-30009-0.html">@sp.ten</a>
+                        <input type=hidden value="0" name="size_30009">
+                        <input type=hidden value="0" name="color_30009">
+                        <input type=hidden value="0" name="made_30009">
+                    </td>
+                    <td align="left" valign="middle" class="text_def">@sp.gia</td>
+                    <td align="left" valign="middle" class="text_def"><input type=text name="qty_30009" size=3 maxlength=4 value="@sp.soluong" onKeyDown="" class="input"></td>
+                    <td align="left" valign="middle" class="text_def">@(sp.gia*sp.soluong)</td>
+                    <td align="left" valign="middle" class="text_def"><input type="button" value="Xóa" /> </td>
+                </tr>
+            }
+        }
+
+        <tr align="right" valign="middle" bgcolor="#FFFFFF">
+            <td height="22" colspan="5" valign="top" class="text_def"><!--DWLayoutEmptyCell-->&nbsp;</td>
+            <td align="left" valign="middle" class="text_def">Tổng tiền</td>
+            <td align="left" valign="middle" class="text_def">@tongtien VNĐ</td>
+        </tr>
+        <tr align="left" valign="top" bgcolor="#FFFFFF" class="bg_all">
+            <td height="36" colspan=7 valign="middle" class="tab_left_3">
+                <input type="button" class="nut_nhan_2" style="width: 300px;" value="Mua thêm  sản phẩn khác" onclick="window.location.href='/Home'" style="width:160px;">
+                <input type="button" class="nut_nhan_2" value="Cập nhật giỏ hàng" onClick="window.location.href='/Nghia/Giohang'">
+                <input type=hidden value="frmList" name="frmList">
+                <input type=hidden value="0" name="chkid">
+                <input type=hidden value=" " name="chkids">
+            </td>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+            <td height="14" colspan="7" valign="top" class="ma_so tab_left_3">Ghi chú : Sau khi thay đổi số lượng hoặc hình thức vận chuyển thì vui lòng kích vào nút "Cập nhật giỏ hàng"</td>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+            <td height="14" colspan="7" valign="top" class="tab_left_3">
+                <input type="button" onclick="window.location.href='/Nghia/NhapThongTinDatHang'" class="nut_nhan_2" value="Mua Hàng" style="width:160px;">
+            </td>
+        </tr>
+        <input name="sum_price" value="0" type="hidden">
+    </form>
+</table>
+<script>
+
+    function onCheckAll() {
+        var checkall = document.getElementById("checkall").checked;
+        var x = document.getElementsByClassName("checkbox");
+        var i;
+        for (i = 0; i < x.length; i++) {
+            if (checkall)
+                x[i].checked = true;
+            else {
+                x[i].checked = false;
+            }
+        }
+    }
+
+
+</script>
+
